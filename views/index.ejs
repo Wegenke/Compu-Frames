@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="compuframes">
+
+<head>
+  <title>compuframes</title>
+  <meta charset="utf-8">
+  <base href="/" />
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link href="/bower_components/angular-material/angular-material.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/ngApp/css/site.css"/>
+</head>
+
+<body>
+  <div class="container">
+      <md-toolbar>
+        <h1>Compu-Frames</h1>
+        <p>MAKE YOUR FRAMES FUN AND ATTRACTIVE<p> 
+        <hr />
+      </md-toolbar>
+      <div flex layout='row'>
+        <md-sidenav flex="15" md-is-locked-open="true" class="sdnav">
+            <md-content class="sdnav">
+              <h3><a href="/">Home</a></h3> <br>
+              <h3><a href="/about">About</a></h3>        
+            </md-content>    
+        </md-sidenav>
+      <div>
+      <div layout="column" layout-align="center center" flex class="contents">
+        <ui-view></ui-view>
+      <div>
+  </div>
+
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="/bower_components/angular-touch/angular-touch.min.js"></script>
+  <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/angular-material/angular-material.min.js"></script>
+  <script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+
+  <script src="/ngApp/app.js"></script>
+  <script src="/ngApp/controllers/controllers.js"></script>
+  <script src="/ngApp/services/services.js"></script>
+
+</body>
+
+</html>

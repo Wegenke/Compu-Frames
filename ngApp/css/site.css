@@ -1,0 +1,14 @@
+html{
+    background-color: black;
+}
+body{
+    text-align: center;
+    background-color: black;
+    color:white;
+}
+.sdnav{
+    background-color: goldenrod;
+}
+.contents{
+    text-align: center;
+}
