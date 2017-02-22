@@ -8,4 +8,7 @@ namespace compuframes.Controllers {
         public message = 'Hello from the about page!';
     }
 
+    export class FrameController{
+        
+    }
 }

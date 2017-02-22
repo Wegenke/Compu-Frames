@@ -19,6 +19,12 @@ namespace compuframes {
                 controller: compuframes.Controllers.AboutController,
                 controllerAs: 'controller'
             })
+            .state('frames',{
+                url:'/frames',
+                templateUrl: '/ngApp/views/frames.html',
+                controller: compuframes.Controllers.FrameController,
+                controllerAs: "controller"
+            })
             .state('notFound', {
                 url: '/notFound',
                 templateUrl: '/ngApp/views/notFound.html'
