@@ -5,14 +5,14 @@
   <title>compuframes</title>
   <meta charset="utf-8">
   <base href="/" />
+  <link rel="stylesheet" href="/ngApp/css/site.css"/>
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link href="/bower_components/angular-material/angular-material.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/ngApp/css/site.css"/>
 </head>
 
-<body>
+<body ng-cloak>
   <div class="container">
-      <md-toolbar>
+      <md-toolbar flex="100">
         <h1>Compu-Frames</h1>
         <p>MAKE YOUR FRAMES FUN AND ATTRACTIVE<p> 
         <hr />
@@ -20,8 +20,10 @@
       <div flex layout='row'>
         <md-sidenav flex="15" md-is-locked-open="true" class="sdnav">
             <md-content class="sdnav">
+              <h5><a href="/sign_in">Sign Up / Log In</a><h5>
               <h3><a href="/">Home</a></h3> <br>
-              <h3><a href="/about">About</a></h3>        
+              <h3><a href="/frames">Frames</h3> </br>       
+              <h3><a href="/about">About</a></h3>
             </md-content>    
         </md-sidenav>
       <div>

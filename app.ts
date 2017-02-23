@@ -8,6 +8,7 @@ import * as ejs from 'ejs';
 
 import routes from './routes/index';
 import users from './routes/users';
+import Database from './db';
 
 let app = express();
 
@@ -28,6 +29,9 @@ app.use('/api', express.static(path.join(__dirname, 'api')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+// Connect to Database on MLAB
+Database.connect().then(() => {});
 
 
 // redirect 404 to home for the sake of AngularJS client-side routes

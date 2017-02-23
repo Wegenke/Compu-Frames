@@ -1,6 +1,6 @@
 namespace compuframes {
 
-    angular.module('compuframes', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages','ui.bootstrap']).config((
+    angular.module('compuframes', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages','ui.bootstrap', 'ngAria', 'ngAnimate', 'ngMessages']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider
@@ -23,6 +23,12 @@ namespace compuframes {
                 url:'/frames',
                 templateUrl: '/ngApp/views/frames.html',
                 controller: compuframes.Controllers.FrameController,
+                controllerAs: "controller"
+            })
+            .state('signIn',{
+                url:'/sign_in',
+                templateUrl: '/ngApp/views/signIn.html',
+                controller: compuframes.Controllers.SignInController,
                 controllerAs: "controller"
             })
             .state('notFound', {
