@@ -4,14 +4,14 @@ namespace compuframes.Controllers {
       
     }
 
-    export class SignInController{
+    export class SignUpController{
 
         public user;
         public openDialog() {
             this.$mdDialog.show({
                 controller: ModalController,
                 controllerAs: 'modal',
-                templateUrl: '/ngApp/views/modal.html'
+                templateUrl: '/ngApp/views/logIn.html'
             })
             
         }

@@ -1,0 +1,35 @@
+<div class="signUpContainer" style="padding-left: 150px">
+   <div id="signup">
+      <div class="signup-screen" style="width: 350px">
+         <div class="space-bot text-center">
+            <h1 style="color:aliceblue">Sign up</h1>
+           <div class="divider"></div>
+         </div>
+           <form  style="color: white" class="form-register" method="post" name="register" novalidate>
+	            <div class="input-field col s6">
+              <label for="first-name">First Name</label></br>
+              <input id="first-name" type="text" class="validate" required style="color: black">
+            </div>
+            <div class="input-field col s6">
+              <label for="last-name">Last Name</label></br>
+              <input id="last-name" type="text" class="validate" required style="color: black">
+             </div>
+             <div class="input-field col s6">
+              <label for="email">Email</label></br>
+              <input id="email" type="email" name="email" ng-model="email" class="validate" required style="color: black">
+             </div>
+             <p class="alert alert-danger" ng-show="form-register.email.$error.email">Your email is invalid.</p>
+             <div class="input-field col s6">
+               <label for="password">Password</label></br>
+               <input id="password" type="password" name="password" ng-model="password" ng-minlength='6' ng-maxlength="20" class="validate" required style="color: black">
+              </div>
+              <p class="alert alert-danger" ng-show="form-register.password.$error.minlength">Your password must be at least 6 characters.</p>
+              <p class="alert alert-danger" ng-show="form-register.password.$error.maxlength">Your password must be no more than 20 characters.</p>
+              <div class="space-top text-center">
+               <button ng-disabled="form-register.$invalid" class="waves-effect waves-light btn done"><strong>SIGN ME UP</strong></button>
+              </div>
+               <h4><b>ALREADY A MEMBER <button ng-click="controller.openDialog()" style="color: white; background-color: black; text-align: center">LOGIN</button></b></h4>
+             </form>
+           </div>
+        </div>
+    </div>

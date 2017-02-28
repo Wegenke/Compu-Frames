@@ -25,10 +25,10 @@ namespace compuframes {
                 controller: compuframes.Controllers.FrameController,
                 controllerAs: "controller"
             })
-            .state('signIn',{
-                url:'/sign_in',
-                templateUrl: '/ngApp/views/signIn.html',
-                controller: compuframes.Controllers.SignInController,
+            .state('signUp',{
+                url:'/signUp',
+                templateUrl: '/ngApp/views/signUp.html',
+                controller: compuframes.Controllers.SignUpController,
                 controllerAs: "controller"
             })
             .state('notFound', {
