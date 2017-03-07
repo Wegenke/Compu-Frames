@@ -1,6 +1,6 @@
 namespace compuframes {
 
-    angular.module('compuframes', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages','ui.bootstrap', 'ngAria', 'ngAnimate', 'ngMessages']).config((
+    angular.module('compuframes', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages','ui.bootstrap', 'ngAria', 'ngAnimate', 'ngMessages', 'mongoose']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider
@@ -30,6 +30,18 @@ namespace compuframes {
                 templateUrl: '/ngApp/views/signUp.html',
                 controller: compuframes.Controllers.SignUpController,
                 controllerAs: "controller"
+            })
+            .state('create', {
+                url:'/create',
+                templateUrl: '/ngApp/views/create.html',
+                controller: compuframes.Controllers.CreateController,
+                controllerAs: 'controller'
+            })
+            .state('edit', {
+                url:'/edit',
+                templateUrl: '/ngApp/views/edit.html',
+                controller: compuframes.Controllers.EditController,
+                controllerAs: 'controller'
             })
             .state('notFound', {
                 url: '/notFound',

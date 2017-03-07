@@ -5,10 +5,13 @@ import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as ejs from 'ejs';
+import * as mongoose from 'mongoose';
 
 import routes from './routes/index';
 import users from './routes/users';
-import Database from './db';
+// import Database from './db';
+import Frame from './models/frame';
+import frames from './api/frames';
 
 let app = express();
 
@@ -26,13 +29,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 app.use('/ngApp', express.static(path.join(__dirname, 'ngApp')));
 app.use('/api', express.static(path.join(__dirname, 'api')));
+app.use('/api/frames', frames);
 
 app.use('/', routes);
 app.use('/users', users);
 
 // Connect to Database on MLAB
-Database.connect().then(() => {});
+// Database.connect().then(() => {});
 
+// Mongoose Database
+const connectionString:string = 'mongodb://wegs:wegs@ds147599.mlab.com:47599/compuframes';
+mongoose.connect(connectionString).then(() => {});
 
 // redirect 404 to home for the sake of AngularJS client-side routes
 app.get('/*', function(req, res, next) {
