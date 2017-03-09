@@ -25,4 +25,5 @@ namespace compuframes.Services {
   }
 
   angular.module('compuframes').service('frameService', FrameService);
-    }
+
+}
