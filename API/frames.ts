@@ -3,7 +3,7 @@ import Frame from '../models/frame';
 
 let router = express.Router();
 
-// GET all framess
+// GET all frames
 router.get('/', (req, res) => {
   Frame.find().then((frames)=> {
       res.json(frames);
