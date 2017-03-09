@@ -5,7 +5,7 @@ export interface IFrame extends mongoose.Document {
   type: 'traditional' | 'rustic' | 'fancy';
   price: number;
   description: string;
-  img: URL;
+  img: string;
 
 } 
 
