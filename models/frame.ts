@@ -7,7 +7,7 @@ export interface IFrame extends mongoose.Document {
   description: string;
   img: URL;
 
-}
+} 
 
 let frameSchema = new mongoose.Schema({
   name: {
@@ -28,7 +28,7 @@ let frameSchema = new mongoose.Schema({
     required: true
   },
   img:{
-    type: URL,
+    type: String,
     required: true
   }
   

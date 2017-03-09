@@ -24,5 +24,5 @@ namespace compuframes.Services {
       }
   }
 
-  angular.module('zoo').service('frameService', FrameService);
+  angular.module('compuframes').service('frameService', FrameService);
     }

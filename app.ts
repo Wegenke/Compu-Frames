@@ -29,10 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 app.use('/ngApp', express.static(path.join(__dirname, 'ngApp')));
 app.use('/api', express.static(path.join(__dirname, 'api')));
-app.use('/api/frames', frames);
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api/frames', frames);
 
 // Connect to Database on MLAB
 // Database.connect().then(() => {});

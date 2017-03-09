@@ -1,6 +1,6 @@
 namespace compuframes {
 
-    angular.module('compuframes', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages','ui.bootstrap', 'ngAria', 'ngAnimate', 'ngMessages', 'mongoose']).config((
+    angular.module('compuframes', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages','ui.bootstrap', 'ngAria', 'ngAnimate', 'ngMessages']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider
