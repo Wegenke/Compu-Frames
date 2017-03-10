@@ -1,17 +1,24 @@
-import * as express from 'express';
+// import * as express from 'express';
 import * as path from 'path';
 import * as favicon from 'serve-favicon';
 import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as ejs from 'ejs';
-import * as mongoose from 'mongoose';
+// import * as mongoose from 'mongoose';
+let passport = require('passport');
+let jwt = require('jsonwebtoken');
+let mongoose = require('mongoose');
+let express = require('express');
+let LocalStrategy = require('passport-local').Strategy;
+let router = express.Router();
+let FacebookStrategy = require('passport-facebook').Strategy;
 
 import routes from './routes/index';
 import users from './routes/users';
-// import Database from './db';
 import Frame from './models/frame';
 import frames from './api/frames';
+let User = require('./models/user');
 
 let app = express();
 
@@ -38,8 +45,89 @@ app.use('/api/frames', frames);
 // Database.connect().then(() => {});
 
 // Mongoose Database
+require("./routes/users");
 const connectionString:string = 'mongodb://wegs:wegs@ds147599.mlab.com:47599/compuframes';
 mongoose.connect(connectionString).then(() => {});
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+passport.use(new LocalStrategy(function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if(err) return done(err);
+      if(!user) return done(null, false, { message: 'Incorrect username.' });
+      if(!user.validatePassword(password)) return done(null, false, { message: 'Password does not match.' });
+      return done(null, user);
+    });
+}));
+passport.serializeUser(function(user, done){
+    done(null, user);
+});
+passport.deserializeUser(function(obj, done){
+    done(null, obj);
+});
+
+passport.use(new FacebookStrategy({
+    clientID: "facebook id",
+    clientSecret: "facebook secret",
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+function(req, accessToken, refreshToken, profile, done) {
+    User.findOne({ facebookId: profile.id }, function (err, user) {
+      if(err) return done(err, null);
+      if(user) {
+        req['tempUser'] = user;
+        return done(null, user);
+      }
+      var userModel = new User();
+      userModel.email = profile.username + "@facebook.com";
+      userModel.facebookId = profile.id;
+      userModel.save(function(err, userSaved) {
+        if(err) {
+            return err;
+        }
+        req['tempUser'] = userSaved;
+        return(err, userSaved);
+      })
+    });
+  }
+));
+
+router.post('/Register', function(req, res, next) {
+  let user = new User();
+  user.username = req.body.username;
+  user.email = req.body.email;
+  user.setPassword(req.body.password);
+  user.save(function(err, user) {
+    if(err) return next(err);
+    res.send("Registration Complete. Please login.");
+  });
+});
+
+router.post('/Login/Local', function(req, res, next) {
+  if(!req.body.username || !req.body.password) return res.status(400).send("Please fill out every field");
+  passport.authenticate('local', function(err, user, info) {
+    console.log(user);
+    if(err) return next(err);
+    if(user) return res.json({ token : user.generateJWT() });
+      return res.status(400).send(info);
+  })(req, res, next);
+});
+
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: [ 'email' ] }));
+
+router.get("/auth/facebook/callback", passport.authenticate('facebook', { failureRedirect: "/#/"}), function(req, res) {
+    if(req['tempUser']) {
+        res.redirect(`/#/auth/token/${ req['tempUser'].generateJWT() }`);
+    } else {
+        res.send("You are not authenticated");
+    }
+});
 
 // redirect 404 to home for the sake of AngularJS client-side routes
 app.get('/*', function(req, res, next) {
@@ -49,7 +137,6 @@ app.get('/*', function(req, res, next) {
     return res.render('index');
   }
 });
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

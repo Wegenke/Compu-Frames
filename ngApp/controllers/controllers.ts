@@ -15,6 +15,16 @@ namespace compuframes.Controllers {
             })
             
         }
+        public login(user) {
+            let q = this.$q.defer();
+            this.$http.post('/api/Users/Login', user).then((res) => {
+                this.setToken(res.token);
+                this.q.resolve();
+            }, (err) => {
+                this.$q.reject(err);
+            });
+            return q.promise;
+        }
         constructor(private $mdDialog: angular.material.IDialogService) { 
            
         }
@@ -27,6 +37,15 @@ namespace compuframes.Controllers {
         constructor(private $mdDialog: angular.material.IDialogService) {
             
         }
+
+        public setToken(token) {
+        this.$window.localStorage.setItem('token', token);
+        }
+
+        public getToken() {
+            return this.$window.localStorage['token'];
+        }
+
     }
 
     export class AboutController {
