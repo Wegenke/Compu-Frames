@@ -24,7 +24,7 @@
 
 <ul>
   <li ng-repeat="frame in controller.frames">
-    {{frame.name}}, {{frame.kind}}, {{frame.price}}, {{frame.description}}, {{frame.img}}.
+    {{frame.name}}, {{frame.type}}, {{frame.price}}, {{frame.description}}, {{frame.img}}.
     <a href="/edit/{{frame._id}}">edit</a>
     <a href="#" ng-click="controller.remove(frame._id)">delete</a>
   </li>

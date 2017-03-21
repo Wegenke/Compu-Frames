@@ -38,7 +38,7 @@ namespace compuframes {
                 controllerAs: 'controller'
             })
             .state('edit', {
-                url:'/edit',
+                url:'/edit/:id',
                 templateUrl: '/ngApp/views/edit.html',
                 controller: compuframes.Controllers.EditController,
                 controllerAs: 'controller'

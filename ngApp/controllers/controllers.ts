@@ -53,7 +53,11 @@ namespace compuframes.Controllers {
     }
 
     export class FrameController{
-        
+        public frames; 
+
+         constructor(private frameService:compuframes.Services.FrameService) {
+        this.frames = this.frameService.list();
+    }
     }
 
     export class CreateController {
